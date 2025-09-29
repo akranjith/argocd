@@ -16,9 +16,10 @@ spec:
     spec:
       containers:
       - name: demo-app
-        image: nginx:latest # Change this to your app's image
+        image: nginx:latest  # Change this to your app's image
         ports:
         - containerPort: 80
+
 ---
 apiVersion: v1
 kind: Service
@@ -31,4 +32,5 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-      nodePort:30008  # Use ClusterIP if you don't need external access
+      nodePort: 30008  # Expose the service on a specific port on the nodes (used with NodePort type)
+  type: NodePort  # Exposes the service externally via NodePort, set to ClusterIP if not needed
